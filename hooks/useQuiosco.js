@@ -1,10 +1,6 @@
-import {useContext, useState, useEffect} from "react"
-import QuioscoContext from "../context/QuioscoProvider"
+import { useContext } from 'react';
+import QuioscoContext from '../context/QuioscoProvider';
 
-const useQuiosco = () => {
- 
-    return useContext(QuioscoContext)
+const useQuiosco = () => useContext(QuioscoContext);
 
-}
-
-export default useQuiosco
+export default useQuiosco;
