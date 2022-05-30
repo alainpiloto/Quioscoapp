@@ -4,19 +4,21 @@ import useQuiosco from '../hooks/useQuiosco';
 import { formatMoney } from '../helpers';
 
 function ProductModal() {
-  const { product, handleChangeModal, handleAddOrder, order } = useQuiosco();
+  const {
+    product, handleChangeModal, handleAddOrder, order,
+  } = useQuiosco();
   const [quantity, setQuantity] = useState(1);
-  const [editMode, setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-      if(order.some(productInOrder => productInOrder.id === product.id)) {
-            setEditMode(true)
-          const quantityInOrder = order.find(productInOrder => productInOrder.id === product.id)
-          setQuantity(quantityInOrder.quantity)
-      } 
-  }, [order])
+    if (order.some((productInOrder) => productInOrder.id === product.id)) {
+      setEditMode(true);
+      const quantityInOrder = order.find((productInOrder) => productInOrder.id === product.id);
+      setQuantity(quantityInOrder.quantity);
+    }
+  }, [order]);
 
-  console.log({quantity})
+  console.log({ quantity });
   const disableMinus = quantity === 1;
 
   return (
@@ -48,7 +50,7 @@ function ProductModal() {
           </button>
         </div>
         <button type="button" onClick={() => handleAddOrder({ ...product, quantity })} className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded">
-          {editMode ? "Guardar cambios" : "Agregar"}
+          {editMode ? 'Guardar cambios' : 'Agregar'}
         </button>
       </div>
     </div>
