@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 const QuioscoContext = createContext();
 
@@ -11,6 +12,10 @@ function QuioscoProvider({ children }) {
   const [modal, setModal] = useState(false);
   const [order, setOrder] = useState([]);
   const [actualStep, setActualStep] = useState(1);
+  const [name, setName] = useState('');
+  const [total, setTotal] = useState('');
+
+  const router = useRouter();
 
   const getCategories = async () => {
     const { data } = await axios('/api/categorias');
@@ -48,6 +53,36 @@ function QuioscoProvider({ children }) {
     setActualStep(step);
   };
 
+  const handledEditQuantity = (id) => {
+    const orderToEdit = order.filter((subOrder) => subOrder.id === id);
+
+    setProduct(orderToEdit[0]);
+
+    setModal(!modal);
+  };
+
+  const handleDeleteProduct = (id) => {
+    const orderUpdated = order.filter((subOrder) => subOrder.id !== id);
+    setOrder(orderUpdated);
+  };
+  useEffect(() => {
+    const initialValue = 0;
+    const newTotal = order.reduce((total, product) => (product.precio * product.quantity) + total, initialValue);
+    setTotal(newTotal);
+  }, [order]);
+
+  const putOrder = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post('/api/ordenes', {
+        order, name, total, date: Date.now().toString(),
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCategories();
     getProductos();
@@ -60,6 +95,7 @@ function QuioscoProvider({ children }) {
   function handleClickCategory(id) {
     const actualCategoryFiltered = categories.filter((catetgory) => id === catetgory.id);
     setActualCategory(actualCategoryFiltered[0]);
+    router.push('/');
   }
   return (
     <QuioscoContext.Provider value={{
@@ -74,6 +110,13 @@ function QuioscoProvider({ children }) {
       order,
       actualStep,
       handleStepChange,
+      handledEditQuantity,
+      handleDeleteProduct,
+      setTotal,
+      total,
+      setName,
+      name,
+      putOrder,
     }}
     >
       {children}

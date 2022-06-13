@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+    .ReactModal__Content .ReactModal__Content--after-open {
+        width: fit-content;
+    }
