@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import { useRouter } from 'next/router';
 import useQuiosco from '../hooks/useQuiosco';
 

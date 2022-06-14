@@ -23,8 +23,8 @@ export default function Total() {
         <div>
           <label htmlFor="nombre" className="block uppercase text-slate-800 font-bold text-xl">
             Nombre
+            <input id="nombre" type="text" onChange={(e) => setName(e.target.value)} className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md" />
           </label>
-          <input id="nombre" type="text" onChange={(e) => setName(e.target.value)} className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md" />
         </div>
         <div className="mt-10">
           <p className="text-2xl">

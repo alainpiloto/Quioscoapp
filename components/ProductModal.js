@@ -18,7 +18,6 @@ function ProductModal() {
     }
   }, [order]);
 
-  console.log({ quantity });
   const disableMinus = quantity === 1;
 
   return (
