@@ -7,7 +7,7 @@ function Categorie({ categorie }) {
   const isInActualCategery = actualCategory?.id === id;
 
   return (
-    <div className={`${isInActualCategery && 'bg-amber-400'} flex items-center gap-4 w-full border p-5 hover:bg-amber-400`}>
+    <button type="button" onClick={() => handleClickCategory(id)} className={`${isInActualCategery && 'bg-amber-400'} flex items-center gap-4 w-full border p-5 hover:bg-amber-400`}>
       <Image
         width={70}
         height={70}
@@ -15,10 +15,10 @@ function Categorie({ categorie }) {
         alt="Imagen Icono"
         className="mr-5"
       />
-      <button type="button" className=" text-2xl font-bold hover:cursor-pointer" onClick={() => handleClickCategory(id)}>
+      <p className="text-2xl font-bold hover:cursor-pointer">
         {nombre}
-      </button>
-    </div>
+      </p>
+    </button>
   );
 }
 

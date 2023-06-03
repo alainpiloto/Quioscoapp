@@ -21,9 +21,9 @@ export default function Total() {
 
       <form onSubmit={(e) => putOrder(e)}>
         <div>
-          <label htmlFor="nombre" className="block uppercase text-slate-800 font-bold text-xl">
+          <label htmlFor="nombre" className="block uppercase text-slate-800 font-bold text-xl ">
             Nombre
-            <input id="nombre" type="text" onChange={(e) => setName(e.target.value)} className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md" />
+            <input id="nombre" type="text" onChange={(e) => setName(e.target.value)} className="bg-gray-200 ml-2 w-full lg:w-1/3 mt-3 p-2 rounded-md" />
           </label>
         </div>
         <div className="mt-10">

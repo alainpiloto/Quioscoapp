@@ -33,7 +33,7 @@ function Steps() {
               router.push(step.url);
               handleStepChange(step.paso);
             }}
-            className="text-2xl font-bold"
+            className="text-2xl font-bold border border-l flex items-center hover:text-white hover:bg-indigo-600 rounded-md px-2 py-1"
             key={step.paso}
           >
             {step.nombre}
